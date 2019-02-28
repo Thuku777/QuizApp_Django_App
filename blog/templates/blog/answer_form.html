@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+ <div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 style="text-align: center; ">ANSWER QUESTION</h3>
+      <div class="content-section">
+        <form method="POST">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            {% for question in questions %}
+            <p class="text-muted" style="font-size: 18px">You are Answering the Question: 
+              <h5 class="text-success"><i><b>{{ question.content }}</b></i></h5>
+            </p>
+            {% endfor %}
+            {{ form|crispy }}            
+          </fieldset>
+          <div class="form-group">
+            <button class="btn btn-outline-dark" type="submit">ANSWER</button>
+          </div>
+        </form>
+        <div class="border-top pt-3">
+        </div>
+      </div>    	
+    </div>
+  </div>
+</div> 
+{% endblock content %}

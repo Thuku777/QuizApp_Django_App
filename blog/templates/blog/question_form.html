@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+ <div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 style="text-align: center; ">ASK QUESTION</h3>
+      <div class="content-section">
+        <form method="POST">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            {{ form|crispy }}            
+          </fieldset>
+          <div class="form-group">
+            <button class="btn btn-outline-dark" type="submit">CREATE</button>
+          </div>
+        </form>
+        <div class="border-top pt-3">
+        </div>
+      </div>    	
+    </div>
+  </div>
+</div> 
+{% endblock content %}

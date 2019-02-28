@@ -1,0 +1,28 @@
+<html>
+ <head>
+ <title></title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+
+ <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+   <a class="navbar-brand" href="#">
+    <img src="bird.jpg" alt="Logo" style="width:40px;">
+  </a>
+  ...
+</nav> 
+
+ <div class="container">
+  <div class="row">
+    <div class="col-sm-8" style="margin-top: 10px; margin-left: 150px;">
+    	<form action="{% url 'accounts:add_question' %}" method="POST">
+    		<textarea rows="4" cols="80" placeholder="What is your Question?" style="border-radius: 8px"></textarea>    		
+  			<div style="margin-top: 10px;">
+  				<input type="submit" name="submit" value="SUBMIT" class="btn btn-outline-dark">
+  			</div>
+    	</form>
+    </div>
+  </div>
+</div> 
+</body>
+</html>

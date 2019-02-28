@@ -1,0 +1,37 @@
+{% extends "blog/base.html" %}
+{% block content %}
+	<article class="media content-section">
+		<img class="rounded-circle article-img" src="{{ object.user.profile.image.url }}">
+		<div class="media-body">
+		    <div class="article-metadata">
+		    	{% if object.user == user %}
+		    	<div class="" style="float: left; width: 100%; margin-bottom: 10px;">
+		    		<a class="btn btn-secondary btn-sm mt-1 mb1" style="width: 150px; float: left;" href="{% url 'blog:question-update' question.id %}">Edit Question</a>
+		    		<a class="btn btn-danger btn-sm mt-1 mb1" style="width: 150px; float: right;" href="{% url 'blog:question-delete' question.id %}">Delete Question</a>
+		    	</div>
+		    	{% endif %}
+				<h4 class="article-title"><b>{{ object.content }}</b></h4> |
+				<small class="text-muted">By <a class="mr-2" href="{% url 'blog:user-question' object.user.username %}">{{ object.user }}</a> on {{ object.created_date|date:"F d, Y" }}</small>
+		    	<a class="btn btn-success btn-sm mt-1 mb1" style="width: 150px; float: right;" href="{% url 'blog:answer-create' question.id %}">Answer Question</a>
+
+			</div>
+			{% for answer in answers %}
+			<div class="article-metadata">
+					<small class="text-muted">Answered By {{ answer.user }} on {{ answer.created_date|date:"F d, Y" }}</small>
+			</div>								
+			<div class="article-content" style="margin-bottom: -20px;">
+				<p class="text-justify" style="margin-top: -20px; margin-left: 30px; font-size: 12px;"><i><b>{{ answer.content }}</b></i></p>
+				<form action="" method="POST">
+					<div style="margin-top: -30px; white-space: nowrap; overflow-x: auto; margin-left: 30px;">
+						{% csrf_token %}
+						<button class="btn btn-outline-info" type="submit" name="question_id" value="{{ question.id }}">Like</button>
+						<!--i class="em em---1" style="margin-top: -2px; display: inline-block; margin-right: 15px;"></i-->
+						<!--a href="#" title="You do not like this Answer"><i class="em em--1" style="margin-top: 3px; display: inline-block; margin-right: 15px;"></i></a>
+						<a href="#" title="You Love This Answer"><i class="em em-i_love_you_hand_sign" style="margin-top: -3px; display: inline-block;"></i></a-->
+					</div>
+				</form>
+			</div>
+			{% endfor %}
+		</div>
+	</article>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% block content %}
+ <div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 style="text-align: center; color: red; "><b>DELETE QUESTION</b></h3>
+      <div class="content-section">
+        <form method="POST">
+          {% csrf_token %}
+          <fieldset class="form-group"> 
+            <h4>You Have Requested a Deletion of this Question: <h6 class="text-danger">"{{ object.content }}"</h6><h5><i><b>Are You Sure You Want to Delete it ?</b></i></h5></h4>
+          </fieldset>
+          <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">YES, DELETE</button>
+            <a class="btn btn-outline-secondary" href="{% url 'blog:question-detail' object.id %}">CANCEL</a>
+          </div>
+        </form>
+        <div class="border-top pt-3">
+        </div>
+      </div>    	
+    </div>
+  </div>
+</div> 
+{% endblock content %}
